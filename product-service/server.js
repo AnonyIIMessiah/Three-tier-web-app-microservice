@@ -7,14 +7,27 @@ app.use(cors({ origin: '*' })); // Enable CORS
 app.use(express.json()); // Middleware to parse JSON requests
 
 // MongoDB Connection
-const url = 'mongodb://localhost:27017'; // Change to 'mongodb://mongo:27017' if using Docker
+const url='mongodb://admin:pass@mongo:27017'; // Change to 'mongodb://mongo:27017' if using Docker
+
+// const url = 'mongodb://admin:pass@localhost:27017'; // Change to 'mongodb://mongo:27017' if using Docker
 const client = new MongoClient(url);
 const dbName = "microservices_db";
 
+// async function connectDB() {
+//     await client.connect();
+//     return client.db(dbName).collection('products');
+// }
 async function connectDB() {
-    await client.connect();
-    return client.db(dbName).collection('products');
+    try {
+        await client.connect();
+        console.log('Connected to MongoDB successfully');
+        return client.db(dbName).collection('products');
+    } catch (error) {
+        console.error('MongoDB Connection Error:', error);
+        throw error;
+    }
 }
+
 
 // 📌 GET all products
 app.get('/products', async (req, res) => {

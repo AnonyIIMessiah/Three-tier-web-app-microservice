@@ -1,0 +1,55 @@
+version: "3"
+services:
+  mongo:
+    image: mongo:4.0.4
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    restart: always
+    networks:
+      - myapp-network
+    volumes:
+      - ./mongo:/data/db    
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongo
+    networks:
+      - myapp-network
+  product-service:
+    build: ./product-service
+    container_name: product-service
+    ports:
+      - "5002:5002"
+    depends_on:
+      - mongo
+    networks:
+      - myapp-network
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports: 
+      - "3000:3000"
+    depends_on:
+      - user-service
+      - product-service
+    networks:
+      - myapp-network
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+    networks:
+      - myapp-network
+networks:
+  myapp-network:
+    driver: bridge

@@ -1,5 +1,5 @@
 ## Start Mongo inside Docker
-docker run -d --rm  --network myapp-network --name mongo -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=pass  mongo:4.0.4
+docker run -d --rm  --network myapp-network --name mongo -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=pass -v ./mongo:/data/db mongo:4.0.4
 
  docker run -d --name mongo \
 	-e MONGO_INITDB_ROOT_USERNAME=admin \
@@ -49,5 +49,23 @@ docker build -t frontend .
 docker run -d --rm -p 3000:3000 --network myapp-network --name frontend frontend
 Now visit: http://localhost:3000
 
+## Run nginx Server
+docker build -t nginx .
+docker run --rm -d --name nginx -p 80:80 --network myapp-network nginx
+
 ## Test containers
 docker run -d --network myapp-network --rm --name node  node
+
+
+
+docker run -d --rm  --network myapp-network --name mongo -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=pass -v ./mongo:/data/db mongo:4.0.4
+
+docker run -d --rm -p 5001:5001 --network myapp-network --name user-service user-service
+docker run -d  --network myapp-network --rm --name product-service -p 5002:5002 product-service
+
+docker run -d --rm -p 3000:3000 --network myapp-network --name frontend frontend
+
+
+docker run --rm -d --name nginx -p 80:80 --network myapp-network nginx
+
+docker stop mongo frontend user-service product-service nginx

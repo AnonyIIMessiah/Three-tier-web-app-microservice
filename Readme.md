@@ -1,3 +1,6 @@
+## Microservice Representation
+![Microservices Representation](Microservices-representation.png)
+
 ## Start Mongo inside Docker
 docker run -d --rm  --network myapp-network --name mongo -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=pass -v ./mongo:/data/db mongo:4.0.4
 
@@ -49,8 +52,6 @@ docker build -t frontend .
 docker run -d --rm -p 3000:3000 --network myapp-network --name frontend frontend
 Now visit: http://localhost:3000
 
-## Microservice Representation
-![Microservices Representation](Microservices-representation.png)
 
 ## Run nginx Server
 docker build -t nginx .

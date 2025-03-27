@@ -49,13 +49,13 @@ npm install @mui/material @emotion/react @emotion/styled
 npm start
 
 docker build -t frontend .
-docker run -d --rm -p 3000:3000 --network myapp-network --name frontend frontend
-Now visit: http://localhost:3000
+docker run -d --rm -p 80:80 --network myapp-network --name frontend frontend
+Now visit: http://localhost:80
 
 
 ## Run nginx Server
 docker build -t nginx .
-docker run --rm -d --name nginx -p 80:80 --network myapp-network nginx
+docker run --rm -d --name nginx -p 8080:8080 --network myapp-network nginx
 
 ## Test containers
 docker run -d --network myapp-network --rm --name node  node
@@ -67,9 +67,9 @@ docker run -d --rm  --network myapp-network --name mongo -p 27017:27017 -e MONGO
 docker run -d --rm -p 5001:5001 --network myapp-network --name user-service user-service
 docker run -d  --network myapp-network --rm --name product-service -p 5002:5002 product-service
 
-docker run -d --rm -p 3000:3000 --network myapp-network --name frontend frontend
+docker run -d --rm -p 80:80 --network myapp-network --name frontend frontend
 
 
-docker run --rm -d --name nginx -p 80:80 --network myapp-network nginx
+docker run --rm -d --name nginx -p 8080:8080 --network myapp-network nginx
 
 docker stop mongo frontend user-service product-service nginx

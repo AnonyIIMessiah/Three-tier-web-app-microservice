@@ -6,11 +6,11 @@ function Analytics() {
   const [productCount, setProductCount] = useState(0);
 
   useEffect(() => {
-    fetch('http://localhost/users')
+    fetch('http://localhost:8080/users')
       .then(response => response.json())
       .then(data => setUserCount(data.length));
 
-    fetch('http://localhost/products')
+    fetch('http://localhost:8080/products')
       .then(response => response.json())
       .then(data => setProductCount(data.length));
   }, []);

@@ -12,7 +12,7 @@ function UserList() {
   }, []);
 
   const fetchUsers = () => {
-    fetch('http://localhost/users')
+    fetch('http://localhost:8080/users')
       .then(response => response.json())
       .then(data => {
         setUsers(data);
@@ -28,7 +28,7 @@ function UserList() {
     // Generate a unique ID using uuid
     const newUserId = uuidv4();
 
-    fetch('http://localhost/users', {
+    fetch('http://localhost:8080/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
@@ -42,7 +42,7 @@ function UserList() {
   };
 
   const deleteUser = (id) => {
-    fetch(`http://localhost/users/${id}`, { method: 'DELETE' })
+    fetch(`http://localhost:8080/users/${id}`, { method: 'DELETE' })
       .then(fetchUsers);
   };
 

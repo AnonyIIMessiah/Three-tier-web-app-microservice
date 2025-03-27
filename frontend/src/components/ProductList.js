@@ -12,7 +12,7 @@ function ProductList() {
   }, []);
 
   const fetchProducts = () => {
-    fetch('http://localhost/products')
+    fetch('http://localhost:8080/products')
       .then(response => response.json())
       .then(data => {
         setProducts(data);
@@ -28,7 +28,7 @@ function ProductList() {
     // Generate a unique ID using uuid
     const newProductId = uuidv4();
 
-    fetch('http://localhost/products', {
+    fetch('http://localhost:8080/products', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
@@ -44,7 +44,7 @@ function ProductList() {
   const deleteProduct = (id) => {
     // console.log(id);
     
-    fetch(`http://localhost/products/${id}`, { method: 'DELETE' })
+    fetch(`http://localhost:8080/products/${id}`, { method: 'DELETE' })
       .then(fetchProducts);
   };
 

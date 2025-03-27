@@ -49,6 +49,9 @@ docker build -t frontend .
 docker run -d --rm -p 3000:3000 --network myapp-network --name frontend frontend
 Now visit: http://localhost:3000
 
+## Microservice Representation
+![Microservices Representation](Microservices-representation.png)
+
 ## Run nginx Server
 docker build -t nginx .
 docker run --rm -d --name nginx -p 80:80 --network myapp-network nginx

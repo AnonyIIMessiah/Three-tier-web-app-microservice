@@ -10,7 +10,7 @@ resource "aws_launch_template" "lt" {
   image_id = "ami-076c6dbba59aa92e6"
 
 
-  instance_type = "t3.micro"
+  instance_type = "t2.micro"
 
 
   key_name = "temp-key"

@@ -10,7 +10,7 @@ app.use(cors({ origin: '*' })); // Enable CORS
 app.use(express.json()); // Middleware to parse JSON requests
 
 // MongoDB Connection
-const url=`mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@mongo:27017`; // Change to 'mongodb://mongo:27017' if using Docker
+const url=`mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@mongodb:27017`; // Change to 'mongodb://mongo:27017' if using Docker
 
 // const url = 'mongodb://admin:pass@localhost:27017'; // Change to 'mongodb://mongo:27017' if using Docker
 const client = new MongoClient(url);

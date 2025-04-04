@@ -6,7 +6,9 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for frontend access
 
 # Connect to MongoDB
-MONGO_URI="mongodb://admin:pass@mongo:27017/"
+# MONGO_URI="mongodb://admin:pass@mongo:27017/" #for docker
+MONGO_URI="mongodb://admin:pass@mongodb:27017/" #for kubernetes and have to change the url as the service name in deployment.yaml is mongodb
+
 # MONGO_URI = "mongodb://admin:pass@localhost:27017/"  # Change to 'mongodb://mongo:27017/' if using Docker
 client = MongoClient(MONGO_URI)
 db = client["microservices_db"]

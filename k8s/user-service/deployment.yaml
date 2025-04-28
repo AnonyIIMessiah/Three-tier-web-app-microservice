@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service
+  labels:
+    app: user-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-service
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      containers:
+        - name: user-service
+          image: demoniiexe/microservice-user
+          ports:
+            - containerPort: 5001
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 512Mi
+          # livenessProbe:
+          #   httpGet:
+          #     path: /users
+          #     port: 5001
+          #   initialDelaySeconds: 30
+          #   periodSeconds: 100

@@ -1,0 +1,21 @@
+# apiVersion: storage.k8s.io/v1
+# kind: StorageClass
+# metadata:
+#   name: standard
+# provisioner: kubernetes.io/aws-ebs  # Replace with your cloud provider's provisioner
+# parameters:
+#   type: gp2  # Example: AWS EBS volume type
+# reclaimPolicy: Delete
+
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: my-pvc
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 10Gi
+#   storageClassName: standard  # Reference to the Storage Class storage class name should be same in both

@@ -6,13 +6,13 @@ function UserList() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState('');
-
+  const apiUrl = process.env.REACT_APP_API_URL
   useEffect(() => {
     fetchUsers();
   }, []);
 
   const fetchUsers = () => {
-    fetch('http://localhost:8080/users')
+    fetch(`http://${apiUrl}/users`)
       .then(response => response.json())
       .then(data => {
         setUsers(data);
@@ -28,7 +28,7 @@ function UserList() {
     // Generate a unique ID using uuid
     const newUserId = uuidv4();
 
-    fetch('http://localhost:8080/users', {
+    fetch(`http://${apiUrl}/users`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
@@ -42,7 +42,7 @@ function UserList() {
   };
 
   const deleteUser = (id) => {
-    fetch(`http://localhost:8080/users/${id}`, { method: 'DELETE' })
+    fetch(`http://${apiUrl}/users/${id}`, { method: 'DELETE' })
       .then(fetchUsers);
   };
 

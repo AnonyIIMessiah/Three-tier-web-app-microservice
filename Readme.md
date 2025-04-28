@@ -73,3 +73,20 @@ docker run -d --rm -p 80:80 --network myapp-network --name frontend frontend
 docker run --rm -d --name nginx -p 8080:8080 --network myapp-network nginx
 
 docker stop mongo frontend user-service product-service nginx
+
+## Building Images
+
+### User-service
+
+`docker build -t demoniiexe/microservice-user . `
+`docker push demoniiexe/microservice-user `
+
+### Product-service
+
+`docker build -t demoniiexe/microservice-product . `
+`docker push demoniiexe/microservice-product  `
+
+### Frontend
+
+`docker build -t demoniiexe/microservice-frontend .`
+`docker push demoniiexe/microservice-frontend`

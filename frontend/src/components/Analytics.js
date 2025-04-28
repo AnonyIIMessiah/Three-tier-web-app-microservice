@@ -4,13 +4,13 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } fro
 function Analytics() {
   const [userCount, setUserCount] = useState(0);
   const [productCount, setProductCount] = useState(0);
-
+  const apiUrl = process.env.REACT_APP_API_URL
   useEffect(() => {
-    fetch('http://localhost:8080/users')
+    fetch(`http://${apiUrl}/users`)
       .then(response => response.json())
       .then(data => setUserCount(data.length));
 
-    fetch('http://localhost:8080/products')
+    fetch(`http://${apiUrl}/products`)
       .then(response => response.json())
       .then(data => setProductCount(data.length));
   }, []);

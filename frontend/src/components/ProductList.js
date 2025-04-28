@@ -6,13 +6,14 @@ function ProductList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState('');
+  const apiUrl = process.env.REACT_APP_API_URL
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
   const fetchProducts = () => {
-    fetch('http://localhost:8080/products')
+    fetch(`http://${apiUrl}/products`)
       .then(response => response.json())
       .then(data => {
         setProducts(data);
@@ -28,7 +29,7 @@ function ProductList() {
     // Generate a unique ID using uuid
     const newProductId = uuidv4();
 
-    fetch('http://localhost:8080/products', {
+    fetch(`http://${apiUrl}/products`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
@@ -44,7 +45,7 @@ function ProductList() {
   const deleteProduct = (id) => {
     // console.log(id);
     
-    fetch(`http://localhost:8080/products/${id}`, { method: 'DELETE' })
+    fetch(`http://${apiUrl}/products/${id}`, { method: 'DELETE' })
       .then(fetchProducts);
   };
 

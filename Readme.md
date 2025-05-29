@@ -1,6 +1,3 @@
-## Microservice Representation
-![Microservices Representation](Microservices-representation.png)
-
 # Three-Tier Web App Microservice
 
 A comprehensive three-tier microservices architecture web application demonstrating modern development patterns with React frontend, Python/Node.js backend services, and MongoDB database, all orchestrated with Docker containers.
@@ -10,27 +7,9 @@ A comprehensive three-tier microservices architecture web application demonstrat
 This project implements a **three-tier microservices architecture** that separates concerns across different layers and technologies, providing scalability, maintainability, and development flexibility.
 
 ### Architecture Diagram
+ 
+![Microservices Representation](Microservices-representation.png)
 
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Presentation  │    │   Application   │    │      Data       │
-│      Tier       │    │      Tier       │    │      Tier       │
-├─────────────────┤    ├─────────────────┤    ├─────────────────┤
-│                 │    │                 │    │                 │
-│  React Frontend │◄──►│  User Service   │◄──►│    MongoDB      │
-│   (Port 80)     │    │   (Python)      │    │  (Port 27017)   │
-│                 │    │  (Port 5001)    │    │                 │
-│                 │    │                 │    │   Collections:  │
-│   Material-UI   │    ├─────────────────┤    │   - users       │
-│   Components    │    │ Product Service │    │   - products    │
-│                 │    │   (Node.js)     │    │                 │
-│                 │    │  (Port 5002)    │    │                 │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                       │
-         └───────────────────────┘
-              Nginx Proxy
-             (Port 8080)
-```
 
 ## 🚀 Features
 
